@@ -33,11 +33,11 @@ namespace MyProgram
             }
             catch (FileNotFoundException ex)
             {
-                Console.WriteLine("The file could not be found: " + ex.Message);
+                Console.WriteLine($"The file could not be found: {ex.Message}");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("An error occurred while reading the file: " + ex.Message);
+                Console.WriteLine($"An error occurred while reading the file: {ex.Message}");
             }
 
         }

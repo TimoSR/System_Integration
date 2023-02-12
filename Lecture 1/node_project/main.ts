@@ -4,7 +4,7 @@ import * as fs from 'fs';
 
     // File info
 
-    private filepath: string = '../files/';
+    private fileFolder: string = '../files/';
     private textFilename: string = 'text_file.txt';
     private jsonFilename: string = 'json_file.json';
     private yamlFilename: string = 'yaml_file.yml';
@@ -14,7 +14,7 @@ import * as fs from 'fs';
 
     // Data Buckets
 
-    private txtContents: string = '';
+    private txtContents = '';
     private jsonContents = '';
     private yamlContents = '';
     private csvContents = '';
@@ -22,23 +22,45 @@ import * as fs from 'fs';
 
     constructor() {}
 
+
     public readingTextFile() {
 
-        fs.readFile(`${this.filepath + this.textFilename}`, this.ENCODING, (err, data) => {
+        const filepath: string = `${this.fileFolder + this.textFilename}`; 
+
+        fs.readFile(filepath, this.ENCODING, (err, data) => {
             if (err) {
                 console.log(err);
                 return;
             }
         
+            // As the data in a text file are just plain text, there is no need to parse the contents into a specific data type.
+
             this.txtContents = data;
 
-            console.log(this.txtContents);
+            //console.log(this.txtContents);
         
         });
 
     }
 
     public readingJsonFile() {
+
+        const filepath: string = `${this.fileFolder + this.jsonFilename}`
+        
+        fs.readFile(filepath, this.ENCODING, (err, data) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            try {
+                this.jsonContents = JSON.parse(data);
+                //console.log(this.jsonContents);
+            } catch (err) {
+                console.log(err);
+            }
+
+        })
 
     }
 
@@ -52,3 +74,4 @@ import * as fs from 'fs';
 
 const main = new Main();
 main.readingTextFile(); 
+main.readingJsonFile();

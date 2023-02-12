@@ -1,4 +1,5 @@
 import * as fs from 'fs';
+import yamljs from 'yamljs';
 
  class Main {
 
@@ -7,18 +8,18 @@ import * as fs from 'fs';
     private fileFolder: string = '../files/';
     private textFilename: string = 'text_file.txt';
     private jsonFilename: string = 'json_file.json';
-    private yamlFilename: string = 'yaml_file.yml';
+    private yamlFilename: string = 'yaml_file.yaml';
     private csvFilename: string = 'csv_file.csv';
     private xmlFilename: string = 'xml_file.xml';
     private readonly ENCODING = 'utf-8';
 
     // Data Buckets
 
-    private txtContents = '';
-    private jsonContents = '';
-    private yamlContents = '';
-    private csvContents = '';
-    private xmlContents = '';
+    private txtContents: unknown;
+    private jsonContents: unknown;
+    private yamlContents: unknown;
+    private csvContents: unknown;
+    private xmlContents: unknown;
 
     constructor() {}
 
@@ -55,7 +56,7 @@ import * as fs from 'fs';
 
             try {
                 this.jsonContents = JSON.parse(data);
-                //console.log(this.jsonContents);
+                console.log(this.jsonContents);
             } catch (err) {
                 console.log(err);
             }
@@ -64,7 +65,25 @@ import * as fs from 'fs';
 
     }
 
-    public readingYamlFile() {}
+    public readingYamlFile() {
+        const filepath: string = `${this.fileFolder + this.yamlFilename}`
+
+        fs.readFile(filepath, this.ENCODING, (err, data) => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+
+            try {
+                this.yamlContents = yamljs.parse(data);
+                console.log(this.yamlContents);
+            } catch (err) {
+                console.log(err);
+                return;
+            }
+        })
+
+    }
 
     public readingCsvFile() {}
 
@@ -75,3 +94,4 @@ import * as fs from 'fs';
 const main = new Main();
 main.readingTextFile(); 
 main.readingJsonFile();
+main.readingYamlFile();

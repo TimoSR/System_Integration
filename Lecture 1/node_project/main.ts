@@ -71,7 +71,7 @@ import xml2js from 'xml2js';
 
     }
 
-    public readingYamlFile() {
+    public readingParseYamlToJson() {
         const filepath: string = this.fileFolder + this.yamlFilename;
 
         fs.readFile(filepath, this.ENCODING, (err, data) => {
@@ -82,8 +82,8 @@ import xml2js from 'xml2js';
             }
 
             try {
-                this.yamlContents = yamljs.parse(data);
-                //console.log(this.yamlContents);
+                this.yamlContents = yamljs.parse(data.toString());
+                console.log(this.yamlContents);
             } catch (err) {
                 console.error(err);
                 return;
@@ -92,7 +92,7 @@ import xml2js from 'xml2js';
 
     }
 
-    public readingCsvFile() {
+    public readingParseCsvToJson() {
 
         const filepath: string = this.fileFolder + this.csvFilename;
 
@@ -104,7 +104,11 @@ import xml2js from 'xml2js';
             }
 
             try {
-                this.csvContents = papaparse.parse(data);
+                this.csvContents = papaparse.parse(data, {
+                    header: true,
+                    dynamicTyping: true,
+                    transformHeader: header => header.toLowerCase().replace(/\W/g, '')
+                  }).data;
                 //console.log(this.csvContents);
             } catch (err) {
                 console.error(err);
@@ -114,35 +118,58 @@ import xml2js from 'xml2js';
 
     }
 
-    public readingXmlFile() {
+    public readParseXmlToJson() {
 
-        const filepath: string = this.fileFolder + this.xmlFilename;
+        const filepath = this.fileFolder + this.xmlFilename;
+        const parser = new xml2js.Parser();
 
         fs.readFile(filepath, this.ENCODING, (err, data) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-          
 
-        const parser = new xml2js.Parser();
-        parser.parseString(data, (err, result) => {
             if (err) {
                 console.error(err);
                 return;
             }
-        
-            this.xmlContents = data;
-            console.log(this.xmlContents);
+
+            parser.parseString(data, (err, result) => {
+
+                if (err) {
+                console.error(err);
+                return;
+                }
+
+                try {
+                    const person = result.person;
+
+                    this.xmlContents = {
+                        name: person.name[0],
+                        age: parseInt(person.age[0]),
+                        email: person.email[0],
+                        address: {
+                            street: person.address[0].street[0],
+                            city: person.address[0].city[0],
+                            state: person.address[0].state[0],
+                            zip: person.address[0].zip[0]
+                        }
+                    };
+
+                    //console.log(this.xmlContents);
+                
+                } catch (err) {
+                    console.error(err);
+                }
+
+                
             });
 
         });
-
+        
     }
+          
  }
+
 const main = new Main();
 main.readingTextFile(); 
 main.readingJsonFile();
-main.readingYamlFile();
-main.readingCsvFile();
-main.readingXmlFile();
+main.readingParseYamlToJson();
+main.readingParseCsvToJson();
+main.readParseXmlToJson();

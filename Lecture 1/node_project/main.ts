@@ -49,7 +49,7 @@ import xml2js from 'xml2js';
 
     }
 
-    public readingJsonFile() {
+    public readParseJsonFile() {
 
         const filepath: string = `${this.fileFolder + this.jsonFilename}`
         
@@ -83,7 +83,7 @@ import xml2js from 'xml2js';
 
             try {
                 this.yamlContents = yamljs.parse(data.toString());
-                console.log(this.yamlContents);
+                //console.log(this.yamlContents);
             } catch (err) {
                 console.error(err);
                 return;
@@ -169,7 +169,7 @@ import xml2js from 'xml2js';
 
 const main = new Main();
 main.readingTextFile(); 
-main.readingJsonFile();
+main.readParseJsonFile();
 main.readingParseYamlToJson();
 main.readingParseCsvToJson();
 main.readParseXmlToJson();

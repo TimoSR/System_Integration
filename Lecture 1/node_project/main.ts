@@ -1,16 +1,18 @@
 import * as fs from 'fs';
 import yamljs from 'yamljs';
+import papaparse from 'papaparse';
+import xml2js from 'xml2js';
 
  class Main {
 
     // File info
 
-    private fileFolder: string = '../files/';
-    private textFilename: string = 'text_file.txt';
-    private jsonFilename: string = 'json_file.json';
-    private yamlFilename: string = 'yaml_file.yaml';
-    private csvFilename: string = 'csv_file.csv';
-    private xmlFilename: string = 'xml_file.xml';
+    private readonly fileFolder: string = '../files/';
+    private readonly textFilename: string = 'text_file.txt';
+    private readonly jsonFilename: string = 'json_file.json';
+    private readonly yamlFilename: string = 'yaml_file.yaml';
+    private readonly csvFilename: string = 'csv_file.csv';
+    private readonly xmlFilename: string = 'xml_file.xml';
     private readonly ENCODING = 'utf-8';
 
     // Data Buckets
@@ -29,17 +31,20 @@ import yamljs from 'yamljs';
         const filepath: string = `${this.fileFolder + this.textFilename}`; 
 
         fs.readFile(filepath, this.ENCODING, (err, data) => {
+
             if (err) {
-                console.log(err);
+                console.error(err);
                 return;
             }
         
             // As the data in a text file are just plain text, there is no need to parse the contents into a specific data type.
 
-            this.txtContents = data;
-
-            //console.log(this.txtContents);
-        
+            try {
+                this.txtContents = data;
+                //console.log(this.txtContents);
+            } catch (err) {
+                console.error(err);
+            }
         });
 
     }
@@ -49,6 +54,7 @@ import yamljs from 'yamljs';
         const filepath: string = `${this.fileFolder + this.jsonFilename}`
         
         fs.readFile(filepath, this.ENCODING, (err, data) => {
+
             if (err) {
                 console.log(err);
                 return;
@@ -56,9 +62,9 @@ import yamljs from 'yamljs';
 
             try {
                 this.jsonContents = JSON.parse(data);
-                console.log(this.jsonContents);
+                //console.log(this.jsonContents);
             } catch (err) {
-                console.log(err);
+                console.error(err);
             }
 
         })
@@ -66,32 +72,77 @@ import yamljs from 'yamljs';
     }
 
     public readingYamlFile() {
-        const filepath: string = `${this.fileFolder + this.yamlFilename}`
+        const filepath: string = this.fileFolder + this.yamlFilename;
 
         fs.readFile(filepath, this.ENCODING, (err, data) => {
+
             if (err) {
-                console.log(err);
+                console.error(err);
                 return;
             }
 
             try {
                 this.yamlContents = yamljs.parse(data);
-                console.log(this.yamlContents);
+                //console.log(this.yamlContents);
             } catch (err) {
-                console.log(err);
+                console.error(err);
                 return;
             }
         })
 
     }
 
-    public readingCsvFile() {}
+    public readingCsvFile() {
 
-    public readingXmlFile() {}
+        const filepath: string = this.fileFolder + this.csvFilename;
 
+        fs.readFile(filepath, this.ENCODING, (err, data) => {
+
+            if(err) {
+                console.error(err);
+                return;
+            }
+
+            try {
+                this.csvContents = papaparse.parse(data);
+                //console.log(this.csvContents);
+            } catch (err) {
+                console.error(err);
+                return;
+            }
+        })
+
+    }
+
+    public readingXmlFile() {
+
+        const filepath: string = this.fileFolder + this.xmlFilename;
+
+        fs.readFile(filepath, this.ENCODING, (err, data) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+          
+
+        const parser = new xml2js.Parser();
+        parser.parseString(data, (err, result) => {
+            if (err) {
+                console.error(err);
+                return;
+            }
+        
+            this.xmlContents = data;
+            console.log(this.xmlContents);
+            });
+
+        });
+
+    }
  }
-
 const main = new Main();
 main.readingTextFile(); 
 main.readingJsonFile();
 main.readingYamlFile();
+main.readingCsvFile();
+main.readingXmlFile();

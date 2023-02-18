@@ -12,6 +12,7 @@ namespace MyProgram
             readParser.readParseJsonFile();
             readParser.readParseYamlToJson();
             readParser.readParseCsvToJson();
+            readParser.readParseXmlToJson();
 
         }
     }

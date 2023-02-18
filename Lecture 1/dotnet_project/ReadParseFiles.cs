@@ -9,9 +9,12 @@ using System.Text.Json.Serialization;
 namespace MyProgram
 {
 
-
     public class ReadParseFiles
     {
+
+        // Json Settings
+
+        public dynamic options = new JsonSerializerOptions { WriteIndented = true };
 
         // File Info
 
@@ -20,6 +23,7 @@ namespace MyProgram
         private readonly string jsonFilename = "json_file.json";
         private readonly string yamlFilename = "yaml_file.yaml";
         private readonly string csvFilename = "csv_file.csv";
+        private readonly string xmlFilename = "xml_file.xml";
 
         // Data Buckets
 
@@ -27,6 +31,7 @@ namespace MyProgram
         private dynamic? jsonContents;
         private dynamic? yamlContents;
         private dynamic? csvContents;
+        private dynamic? xmlContents;
 
         public class Person
         {
@@ -104,7 +109,7 @@ namespace MyProgram
                 // Converting the yamlString to a yamlObject
                 var yamlObject = deserializer.Deserialize(new StringReader(yamlString));
                 // Converting the yamlObject to a jsonString
-                var jsonString = JsonSerializer.Serialize(yamlObject, new JsonSerializerOptions { WriteIndented = true });
+                var jsonString = JsonSerializer.Serialize(yamlObject, options);
                 // Converting the jsonString to a jsonObject
                 yamlContents = JsonSerializer.Deserialize<JsonElement>(jsonString);
                 // Console.WriteLine(yamlContents);
@@ -128,19 +133,20 @@ namespace MyProgram
 
             string filepath = $"{fileFolder + csvFilename}";
 
+
             try
             {
                 var csvString = File.ReadAllText(filepath);
                 var reader = new StringReader(csvString);
                 var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
                 IEnumerable<Person> people = csv.GetRecords<Person>().ToList();
-                string json = JsonSerializer.Serialize(people, new JsonSerializerOptions { WriteIndented = true });
+                string json = JsonSerializer.Serialize(people, options);
                 csvContents = JsonSerializer.Deserialize<JsonElement>(json);
-
                 //Console.WriteLine(csvContents);
                 var selectedJsonElement = csvContents[0];
-
-                Console.WriteLine(selectedJsonElement);
+                // Indenting Element for clean log
+                string indentSelected = JsonSerializer.Serialize(selectedJsonElement, options);
+                Console.WriteLine(indentSelected);
 
                 if (selectedJsonElement.ValueKind != JsonValueKind.Undefined)
                 {

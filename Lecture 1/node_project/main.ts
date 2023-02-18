@@ -26,7 +26,7 @@ import xml2js from 'xml2js';
     constructor() {}
 
 
-    public readingTextFile() {
+    public readParseTextFile() {
 
         const filepath: string = `${this.fileFolder + this.textFilename}`; 
 
@@ -71,7 +71,7 @@ import xml2js from 'xml2js';
 
     }
 
-    public readingParseYamlToJson() {
+    public readParseYamlToJson() {
         const filepath: string = this.fileFolder + this.yamlFilename;
 
         fs.readFile(filepath, this.ENCODING, (err, data) => {
@@ -92,7 +92,7 @@ import xml2js from 'xml2js';
 
     }
 
-    public readingParseCsvToJson() {
+    public readParseCsvToJson() {
 
         const filepath: string = this.fileFolder + this.csvFilename;
 
@@ -157,8 +157,7 @@ import xml2js from 'xml2js';
                 } catch (err) {
                     console.error(err);
                 }
-
-                
+  
             });
 
         });
@@ -168,8 +167,8 @@ import xml2js from 'xml2js';
  }
 
 const main = new Main();
-main.readingTextFile(); 
+main.readParseTextFile(); 
 main.readParseJsonFile();
-main.readingParseYamlToJson();
-main.readingParseCsvToJson();
+main.readParseYamlToJson();
+main.readParseCsvToJson();
 main.readParseXmlToJson();

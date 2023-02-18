@@ -8,7 +8,9 @@ namespace MyProgram
         {
             ReadParseFiles readParser = new ReadParseFiles();
 
-            readParser.readingTextFile();
+            readParser.readParseTextFile();
+            readParser.readParseJsonFile();
+            readParser.readParseYamlToJson();
 
         }
     }

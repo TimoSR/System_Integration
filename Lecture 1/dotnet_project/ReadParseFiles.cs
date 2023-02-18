@@ -3,6 +3,8 @@ using CsvHelper;
 using System.Globalization;
 using YamlDotNet.Serialization;
 using System.Text.Json;
+using System.Linq;
+using System.Text.Json.Serialization;
 
 namespace MyProgram
 {
@@ -26,9 +28,21 @@ namespace MyProgram
         private dynamic? yamlContents;
         private dynamic? csvContents;
 
-        public ReadParseFiles()
+        public class Person
         {
 
+            public string? name { get; set; }
+            public string? email { get; set; }
+            public Address? address { get; set; }
+
+        }
+
+        public class Address
+        {
+            public string? street { get; set; }
+            public string? city { get; set; }
+            public string? state { get; set; }
+            public string? zip { get; set; }
         }
 
         public void readParseTextFile()
@@ -117,11 +131,22 @@ namespace MyProgram
             try
             {
                 var csvString = File.ReadAllText(filepath);
-                var reader = new StreamReader(csvString);
+                var reader = new StringReader(csvString);
                 var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
                 IEnumerable<Person> people = csv.GetRecords<Person>().ToList();
-                var jsonString = JsonSerializer.Serialize(people);
-                Console.Writeline(jsonString);
+                string json = JsonSerializer.Serialize(people, new JsonSerializerOptions { WriteIndented = true });
+                csvContents = JsonSerializer.Deserialize<JsonElement>(json);
+
+                //Console.WriteLine(csvContents);
+                var selectedJsonElement = csvContents[0];
+
+                Console.WriteLine(selectedJsonElement);
+
+                if (selectedJsonElement.ValueKind != JsonValueKind.Undefined)
+                {
+                    string name = selectedJsonElement.GetProperty("name").GetString();
+                    Console.WriteLine(name);
+                }
 
             }
             catch (FileNotFoundException ex)
@@ -135,17 +160,10 @@ namespace MyProgram
 
         }
 
-        public class Person
+        public void readParseXmlToJson()
         {
 
-            public string? name { get; set; }
-            public string? email { get; set; }
-            public string? address { get; set; }
-            public string? street { get; set; }
-            public string? city { get; set; }
-            public string? state { get; set; }
-            public string? zip { get; set; }
-
         }
+
     }
 }

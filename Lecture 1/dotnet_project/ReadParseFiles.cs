@@ -84,10 +84,11 @@ namespace MyProgram
                 var cache = File.ReadAllText(filepath);
                 // converting the jsonString to a jsonObject
                 jsonContents = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(cache);
-                // Console.WriteLine(jsonContents);
+                var jsonString = System.Text.Json.JsonSerializer.Serialize(jsonContents, settings);
+                Console.WriteLine(jsonString);
                 // // Testing if JsonObject was successfully created
-                // string name = jsonContents.GetProperty("name").GetString();
-                // Console.WriteLine(name);
+                string name = jsonContents.GetProperty("name").GetString();
+                Console.WriteLine(name);
             }
             catch (FileNotFoundException ex)
             {
@@ -115,10 +116,10 @@ namespace MyProgram
                 var jsonString = System.Text.Json.JsonSerializer.Serialize(yamlObject, settings);
                 // Converting the jsonString to a jsonObject
                 yamlContents = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(jsonString);
-                // Console.WriteLine(yamlContents);
+                Console.WriteLine(yamlContents);
                 // // Testing if object was successfully created
-                // string name = yamlContents.GetProperty("name").GetString();
-                // Console.WriteLine(name);
+                string name = yamlContents.GetProperty("name").GetString();
+                Console.WriteLine(name);
             }
             catch (FileNotFoundException ex)
             {
@@ -148,12 +149,12 @@ namespace MyProgram
                 var selectedJsonElement = csvContents[0];
                 // Indenting Element for clean log
                 string indentSelected = System.Text.Json.JsonSerializer.Serialize(selectedJsonElement, settings);
-                //Console.WriteLine(indentSelected);
+                Console.WriteLine(indentSelected);
 
                 if (selectedJsonElement.ValueKind != JsonValueKind.Undefined)
                 {
                     string name = selectedJsonElement.GetProperty("name").GetString();
-                    //Console.WriteLine(name);
+                    Console.WriteLine(name);
                 }
 
             }
@@ -202,7 +203,9 @@ namespace MyProgram
                     xmlContents.Add(personObject);
                 }
                 // Testing if I can access objects
-                // Console.WriteLine(xmlContents[0].ToString());
+                Console.WriteLine(xmlContents[0].ToString());
+                Console.WriteLine(xmlContents[0].SelectToken("name").ToString());
+
             }
             catch (FileNotFoundException ex)
             {

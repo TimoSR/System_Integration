@@ -1,3 +1,5 @@
+import json
+
 class ReadParseFiles:
 
     def __init__(self):
@@ -16,6 +18,7 @@ class ReadParseFiles:
 
     def __call__(self):
         self.readParseTextFile()
+        self.readParseJsonFile()
 
     def fileFolder(self):
         return self.__fileFolder
@@ -36,9 +39,24 @@ class ReadParseFiles:
         return self.__xmlFileName
 
     def readParseTextFile(self):
+
         filepath = f"{self.fileFolder()}{self.textFileName()}"
 
         with open(filepath, 'r') as file:
             self.__txtContents = file.read()
 
-        print(self.__txtContents)
+        #print(self.__txtContents)
+
+    def readParseJsonFile(self):
+        
+        filepath = f"{self.fileFolder()}{self.jsonFileName()}"
+
+        with open(filepath, 'r') as file:
+            self.__jsonContents = json.load(file)
+
+        formattetJson = json.dumps(self.__jsonContents, indent=2)
+
+        print(formattetJson)
+        print(self.__jsonContents["name"])
+
+        

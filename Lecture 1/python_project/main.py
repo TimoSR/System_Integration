@@ -6,6 +6,7 @@ class Main:
 
     def run(self):
         self.__readParseFiles.readParseTextFile()
+        self.__readParseFiles.readParseJsonFile()
 
 if __name__ == "__main__":
     main = Main()

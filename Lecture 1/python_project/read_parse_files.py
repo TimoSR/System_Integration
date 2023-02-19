@@ -72,7 +72,6 @@ class ReadParseFiles:
 
         except IOError as err:
             print(f"Error reading file: {err}")
-
     
 
     def readParseCsvToJson(self):
@@ -97,6 +96,7 @@ class ReadParseFiles:
         except IOError as err:
 
             print(f"Error reading file: {err}")
+
 
     def transformCsvToPerson(self, row):
             name_parts = row["name"].split(" ")

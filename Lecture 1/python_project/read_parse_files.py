@@ -37,26 +37,39 @@ class ReadParseFiles:
     
     def xmlFileName(self):
         return self.__xmlFileName
+    
 
     def readParseTextFile(self):
 
         filepath = f"{self.fileFolder()}{self.textFileName()}"
 
-        with open(filepath, 'r') as file:
-            self.__txtContents = file.read()
+        try:
 
-        #print(self.__txtContents)
+            with open(filepath, 'r') as file:
+                self.__txtContents = file.read()
+                #print(self.__txtContents)
+                
+        except IOError as err:
+
+            print(f"Error reading file: {err}")
+
 
     def readParseJsonFile(self):
         
         filepath = f"{self.fileFolder()}{self.jsonFileName()}"
 
-        with open(filepath, 'r') as file:
-            self.__jsonContents = json.load(file)
+        try:
+            
+            with open(filepath, 'r') as file:
+                self.__jsonContents = json.load(file)
 
-        formattetJson = json.dumps(self.__jsonContents, indent=2)
+            formattetJson = json.dumps(self.__jsonContents, indent=2)
 
-        print(formattetJson)
-        print(self.__jsonContents["name"])
+            print(formattetJson)
+            print(self.__jsonContents["name"])
 
-        
+        except IOError as err:
+            print(f"Error reading file: {err}")
+
+    
+    

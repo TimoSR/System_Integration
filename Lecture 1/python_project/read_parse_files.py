@@ -1,3 +1,6 @@
+import json
+import csv
+
 class ReadParseFiles:
 
     def __init__(self):
@@ -16,6 +19,8 @@ class ReadParseFiles:
 
     def __call__(self):
         self.readParseTextFile()
+        self.readParseJsonFile()
+        self.readParseCsvToJson()
 
     def fileFolder(self):
         return self.__fileFolder
@@ -34,11 +39,75 @@ class ReadParseFiles:
     
     def xmlFileName(self):
         return self.__xmlFileName
+    
 
     def readParseTextFile(self):
+
         filepath = f"{self.fileFolder()}{self.textFileName()}"
 
-        with open(filepath, 'r') as file:
-            self.__txtContents = file.read()
+        try:
 
-        print(self.__txtContents)
+            with open(filepath, 'r') as file:
+                self.__txtContents = file.read()
+                #print(self.__txtContents)
+                
+        except IOError as err:
+
+            print(f"Error reading file: {err}")
+
+
+    def readParseJsonFile(self):
+        
+        filepath = f"{self.fileFolder()}{self.jsonFileName()}"
+
+        try:
+            
+            with open(filepath, 'r') as file:
+                self.__jsonContents = json.load(file)
+
+            jsonString = json.dumps(self.__jsonContents, indent=2)
+
+            #print(jsonString)
+            #print(self.__jsonContents["name"])
+
+        except IOError as err:
+            print(f"Error reading file: {err}")
+    
+
+    def readParseCsvToJson(self):
+
+        filepath = f"{self.fileFolder()}{self.csvFileName()}"
+
+        try:
+
+            with open(filepath, 'r') as file:
+                reader = csv.DictReader(file)
+                csvData = [row for row in reader]
+
+            self.csvContents = [self.transformCsvToPerson(row) for row in csvData]
+
+            jsonString = json.dumps(self.csvContents, indent=2)
+            self.__csvContents = json.loads(jsonString)
+            selectedJsonElement = self.__csvContents[0]
+            formattetElement = json.dumps(selectedJsonElement, indent=2)
+            print(formattetElement)
+            print(selectedJsonElement["name"])
+
+        except IOError as err:
+
+            print(f"Error reading file: {err}")
+
+
+    def transformCsvToPerson(self, row):
+            name_parts = row["name"].split(" ")
+            return {
+                "name" : f"{name_parts[0]} {name_parts[1]}",
+                "age" : row["age"],
+                "email" : row["email"],
+                "address": {
+                    "street": row["street"],
+                    "city": row["city"],
+                    "state": row["state"],
+                    "zip": row["zip"]
+                }
+            }

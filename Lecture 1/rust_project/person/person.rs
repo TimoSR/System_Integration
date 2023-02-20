@@ -1,6 +1,8 @@
 
 pub mod person_impl {
 
+    // Example of composition as inheritance
+
     pub struct Person {
         pub name: String,
         pub age: u32,

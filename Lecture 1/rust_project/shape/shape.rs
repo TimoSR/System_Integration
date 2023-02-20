@@ -20,7 +20,5 @@ impl Shape for Rectangle {
         self.width * self.height
     }
 
-    fn perimeter(&self) -> f64 {
-        2.0 * (self.width + self.height)
-    }
+    fn perimeter(&self) -> f64 { 2.0 * (self.width + self.height) }
 }

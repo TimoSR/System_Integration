@@ -1,4 +1,6 @@
 
+// using a module to simplify imports in mod.rs
+
 pub mod person_impl {
 
     // Example of composition as inheritance

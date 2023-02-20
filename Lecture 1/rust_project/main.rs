@@ -6,7 +6,7 @@ use test_functions::*;
 
 fn main() {
 
-    // with modules rust both support variables with module path
+    // with modules rust you can make rust pretty!
 
     // no modulepath ::
 
@@ -16,7 +16,7 @@ fn main() {
     println!("Rectangle area: {}", rectangle.area());
     println!("Rectangle perimeter: {}", rectangle.perimeter());
     
-    // with modulepath ::
+    // with modulepath :: in case of library naming overlap
     
     test_functions::call_private_function();
     let rectangle = shape::Rectangle { width: 5.0, height: 10.0 };

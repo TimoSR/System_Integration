@@ -1,7 +1,26 @@
 mod test_functions;
-use test_functions::test1;
+mod shape;
+
+use shape::*;
+use test_functions::*;
 
 fn main() {
-    test1::public_function();
-    test1::call_private_function();
+
+    // with modules rust both support variables with module path
+
+    // no modulepath ::
+
+    public_function();
+    let rectangle = Rectangle { width: 5.0, height: 10.0 };
+    println!("Rectangle width: {}", rectangle.width());
+    println!("Rectangle area: {}", rectangle.area());
+    println!("Rectangle perimeter: {}", rectangle.perimeter());
+    
+    // with modulepath ::
+    
+    test_functions::call_private_function();
+    let rectangle = shape::Rectangle { width: 5.0, height: 10.0 };
+    println!("Rectangle width: {}", rectangle.width);
+    println!("Rectangle area: {}", rectangle.area());
+    println!("Rectangle perimeter: {}", rectangle.perimeter());
 }

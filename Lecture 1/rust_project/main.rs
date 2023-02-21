@@ -1,30 +1,25 @@
-//Creates a new module from referenced code
-
+// Creates new modules from referenced code in separate files
 mod test_functions;
 mod shape;
 mod person;
 
-// Imports the functionality from the modules has option of alias
-// alias e.g. "use shape as shp;"
-
+// Imports the functionality from the modules, with the option to use an alias
+// (e.g. "use shape as shp;")
 use shape::*;
 use test_functions::*;
 use person::*;
 
-
 fn main() {
+    // Rust's module system allows for organized and readable code
 
-    // with modules rust you can make rust pretty!
-
-    // no modulepath ::
-
+    // Example usage without needing to specify the full module path
     let rectangle = Rectangle { width: 5.0, height: 10.0 };
     println!("Rectangle width: {}", rectangle.width());
     println!("Rectangle area: {}", rectangle.area());
     println!("Rectangle perimeter: {}", rectangle.perimeter());
-    
-    // with modulepath :: in case of library naming overlap
-    
+
+    // Example usage with the full module path, useful in cases of library naming overlap
+    // (e.g. COOLColors::shape::Rectangle)
     let rectangle = shape::Rectangle { width: 5.0, height: 10.0 };
     println!("Rectangle width: {}", rectangle.width);
     println!("Rectangle area: {}", rectangle.area());
@@ -32,21 +27,18 @@ fn main() {
 
     println!("Test {}", rectangle.width());
 
-    // An example of inheritance as composition
-
+    // Example of composition-based inheritance
     let alice = Person {
         name: String::from("Alice"),
         age: 30,
     };
-
+    
     let alice_with_job = PersonWithJob::new(alice, String::from("Software Developer"));
-
     alice_with_job.say_hello_with_job();
 
-    //There is some casses where you could use references to make your code more readable
-    // Lets say if I had a api::get, api::post, api::update, api::delete. 
-
+    // In some cases, it may be more readable to use references instead of specifying the full module path
+    // For example, if you have functions like api::get, api::post, api::update, and api::delete,
+    // it may be clearer to handle these functions as enums or structs instead of modules
     talking_alot::public_function();
     quite_type::call_private_function();
-
 }

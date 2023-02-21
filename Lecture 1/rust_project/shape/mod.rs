@@ -1,4 +1,3 @@
-pub use self::shape::Shape;
-pub use self::shape::Rectangle;
+pub use self::shape::*;
 
 mod shape;

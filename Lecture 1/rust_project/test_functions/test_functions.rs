@@ -1,11 +1,18 @@
-pub fn public_function() {
-    println!("Hello World!");
+
+pub mod talking_alot {
+
+    pub fn public_function() {
+        println!("Hello World!");
+    }
 }
 
-fn private_function() {
-    println!("This is a private function");
-}
+pub mod quite_type {
 
-pub fn call_private_function() {
-    private_function();
+    fn private_function() {
+        println!("This is a private function");
+    }
+    
+    pub fn call_private_function() {
+        private_function();
+    }
 }

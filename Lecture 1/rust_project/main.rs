@@ -1,10 +1,16 @@
+//Creates a new module from referenced code
+
 mod test_functions;
 mod shape;
 mod person;
 
+// Imports the functionality from the modules has option of alias
+// alias e.g. "use shape as shp;"
+
 use shape::*;
 use test_functions::*;
 use person::*;
+
 
 fn main() {
 
@@ -12,7 +18,6 @@ fn main() {
 
     // no modulepath ::
 
-    public_function();
     let rectangle = Rectangle { width: 5.0, height: 10.0 };
     println!("Rectangle width: {}", rectangle.width());
     println!("Rectangle area: {}", rectangle.area());
@@ -20,7 +25,6 @@ fn main() {
     
     // with modulepath :: in case of library naming overlap
     
-    test_functions::call_private_function();
     let rectangle = shape::Rectangle { width: 5.0, height: 10.0 };
     println!("Rectangle width: {}", rectangle.width);
     println!("Rectangle area: {}", rectangle.area());
@@ -28,7 +32,7 @@ fn main() {
 
     println!("Test {}", rectangle.width());
 
-    // Testing person
+    // An example of inheritance as composition
 
     let alice = Person {
         name: String::from("Alice"),
@@ -38,5 +42,11 @@ fn main() {
     let alice_with_job = PersonWithJob::new(alice, String::from("Software Developer"));
 
     alice_with_job.say_hello_with_job();
+
+    //There is some casses where you could use references to make your code more readable
+    // Lets say if I had a api::get, api::post, api::update, api::delete. 
+
+    talking_alot::public_function();
+    quite_type::call_private_function();
 
 }

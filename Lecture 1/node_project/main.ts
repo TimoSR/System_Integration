@@ -10,8 +10,10 @@ async function main() {
   await reader.readParseCsvToJson();
   await reader.readParseXmlToJson();
 
+  // Printing the modified variables modified by the methods above
+
   console.log(reader);
-  
+
 }
 
 main();

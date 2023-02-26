@@ -38,7 +38,6 @@ fn main() {
 
     // In some cases, it may be more readable to use references instead of specifying the full module path
     // For example, if you have functions like api::get, api::post, api::update, and api::delete,
-    // it may be clearer to handle these functions as enums or structs instead of modules
     talking_alot::public_function();
     quite_type::call_private_function();
 }

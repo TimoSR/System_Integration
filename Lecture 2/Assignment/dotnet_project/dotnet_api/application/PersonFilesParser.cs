@@ -31,11 +31,14 @@ namespace dotnet_api.application
         public string? state { get; set; }
         public string? zip { get; set; }
 
-        public PersonFilesParser()
+        public PersonFilesParser(string type = "")
         {
-
-            readParseJsonFile();
-
+            switch (type)
+            {
+                default:
+                    readParseJsonFile();
+                    break;
+            }
         }
 
 

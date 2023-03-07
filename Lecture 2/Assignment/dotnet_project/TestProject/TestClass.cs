@@ -12,13 +12,10 @@ namespace testproject
         {
             PersonFilesParser parser = new PersonFilesParser();
 
-            parser.readParseJsonFile();
-
             var contents = parser.jsonContents;
 
             Console.WriteLine(contents?.ToString());
             Console.WriteLine(contents?.GetType().ToString());
-
 
         }
     }

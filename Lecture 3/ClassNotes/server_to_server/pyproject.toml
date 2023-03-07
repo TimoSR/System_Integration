@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "server-to-server"
+version = "0.1.0"
+description = ""
+authors = ["Archit3ct <timothy.s.rasmussen@gmail.com>"]
+readme = "README.md"
+packages = [{include = "server_to_server"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.92.0"
+uvicorn = "^0.20.0"
+requests = "^2.28.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

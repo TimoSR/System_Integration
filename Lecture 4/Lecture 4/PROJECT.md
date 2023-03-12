@@ -1,0 +1,1 @@
+The documentation for the Azure setup is written in Terraform.

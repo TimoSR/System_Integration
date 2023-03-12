@@ -4,7 +4,7 @@ The documentation for the process of the full project is here:
 
 https://abundant-interest-0e2.notion.site/Part-1-de04985f600848df951fef39c3b477a8
 
-Documentation for Integrator nicolai
+Documentation for Integrator nicolaj
 
 classicmodels_user:<user>.html within the node folder
 

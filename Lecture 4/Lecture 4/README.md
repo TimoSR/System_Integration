@@ -4,10 +4,8 @@ The documentation for the process of the full project is here:
 
 https://abundant-interest-0e2.notion.site/Part-1-de04985f600848df951fef39c3b477a8
 
-Documentation for nicolai
+Documentation for Integrator nicolai
 
 classicmodels_user:<user>.html
-
-+
 
 https://www.notion.so/Dokumentation-34ccd766f20f415f9793c70d0a5bdb7a?pvs=4

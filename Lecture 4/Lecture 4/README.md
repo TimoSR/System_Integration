@@ -6,6 +6,6 @@ https://abundant-interest-0e2.notion.site/Part-1-de04985f600848df951fef39c3b477a
 
 Documentation for Integrator nicolai
 
-classicmodels_user:<user>.html
+classicmodels_user:<user>.html within the node folder
 
 https://www.notion.so/Dokumentation-34ccd766f20f415f9793c70d0a5bdb7a?pvs=4

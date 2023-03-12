@@ -377,6 +377,8 @@ override.tf.json
 .terraformrc
 terraform.rc
 
+tfplan
+
 # End of https://www.toptal.com/developers/gitignore/api/terraform
 
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,go,node,python

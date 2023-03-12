@@ -36,15 +36,19 @@ resource "azurerm_mysql_server" "my_mysql_server" {
 resource "azurerm_mysql_firewall_rule" "my_myqsql_firewall" {
   name                = "AllowAll"
   resource_group_name = var.resource_group_name
-  server_name         = var.server_name
+  server_name         = azurerm_mysql_server.my_mysql_server.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "255.255.255.255"
+
+  depends_on = [azurerm_mysql_server.my_mysql_server]
 }
 
 resource "azurerm_mysql_database" "my_myqsql_database" {
   name                = "mysql_m1"
   resource_group_name = var.resource_group_name
-  server_name         = var.server_name
+  server_name         = azurerm_mysql_server.my_mysql_server.name
   charset             = "utf8"
   collation           = "utf8_unicode_ci"
+
+  depends_on = [azurerm_mysql_server.my_mysql_server]
 }

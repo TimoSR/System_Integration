@@ -24,4 +24,29 @@ connection.connect((err: mysql.MysqlError) => {
     console.log('Tables:', results);
   });
 
+  // Delete the employee with employeeNumber 1002
+
+  const query = `SELECT * FROM employees`;
+  connection.query(query, (error, results) => {
+    if (error) {
+      return;
+    }
+  
+    console.log(results);
+  });
+
+  // Don't work due to dependencies
+
+  // const values = [1002];
+  // const deletequery = `DELETE FROM employees WHERE employeeNumber = ${values[0]}`;
+  // connection.query(deletequery, values, (error, results: any) => {
+  //   if (error) {
+  //     console.error('Error deleting row: ' + error.stack);
+  //     return;
+  //   }
+
+  //   console.log('Deleted ' + results.affectedRows + ' row(s) from employees');
+  // });
+
+
 });

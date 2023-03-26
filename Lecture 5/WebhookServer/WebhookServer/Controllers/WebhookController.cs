@@ -35,13 +35,58 @@ namespace WebhookServer.Controllers
         }
 
         [HttpPost("unregister/{event}")]
-        public IActionResult Unregister(string @event, [FromBody] string endpointUrl)
+        public async Task<IActionResult> Unregister(string @event, [FromBody] string endpointUrl)
         {
             string filename = $"{@event}.txt";
             string[] existingEndpoints = System.IO.File.ReadAllLines(filename);
             string[] updatedEndpoints = existingEndpoints.Where(x => x != endpointUrl).ToArray();
             System.IO.File.WriteAllLines(filename, updatedEndpoints);
+
+            // Send a "ping" event to the unregistered webhook URL
+            using HttpClient httpClient = new HttpClient();
+            var pingEventData = new
+            {
+                event_type = "ping",
+                message = "Webhook unregistered successfully."
+            };
+            string pingEventJson = JsonSerializer.Serialize(pingEventData);
+            StringContent pingEventContent = new StringContent(pingEventJson, Encoding.UTF8, "application/json");
+            await httpClient.PostAsync(endpointUrl, pingEventContent);
+
             return Ok("Webhook unregistered.");
         }
+
+        [HttpPost("trigger/{event}")]
+        public async Task<IActionResult> TriggerEvent(string @event)
+        {
+            string[] validEvents = { "payment_received", "payment_processed", "invoice_processing", "invoice_completed" };
+
+            if (!validEvents.Contains(@event))
+            {
+                return BadRequest($"Invalid event {@event}. Valid events are {string.Join(", ", validEvents)}.");
+            }
+
+            string filename = $"{@event}.txt";
+            string[] registeredEndpoints = System.IO.File.ReadAllLines(filename);
+
+            using HttpClient httpClient = new HttpClient();
+
+            var eventData = new
+            {
+                event_type = @event,
+                message = $"Event {@event} triggered."
+            };
+
+            string eventJson = JsonSerializer.Serialize(eventData);
+            StringContent eventContent = new StringContent(eventJson, Encoding.UTF8, "application/json");
+
+            foreach (string endpointUrl in registeredEndpoints)
+            {
+                await httpClient.PostAsync(endpointUrl, eventContent);
+            }
+
+            return Ok($"Event {@event} triggered for {registeredEndpoints.Length} webhooks.");
+        }
+
     }
 }

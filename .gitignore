@@ -379,7 +379,7 @@ terraform.rc
 
 tfplan
 
-dccache
+.dccache
 
 # End of https://www.toptal.com/developers/gitignore/api/terraform
 

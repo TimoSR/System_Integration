@@ -28,7 +28,7 @@ namespace WebhookServer.Controllers
                 };
                 string pingEventJson = JsonSerializer.Serialize(pingEventData);
                 StringContent pingEventContent = new StringContent(pingEventJson, Encoding.UTF8, "application/json");
-                // file deepcode ignore Ssrf: <please specify a reason of ignoring this>
+
                 await httpClient.PostAsync(endpointUrl, pingEventContent);
             }
             return Ok("Webhook registered.");

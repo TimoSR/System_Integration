@@ -77,8 +77,9 @@ namespace WebhookIntegrator.Controllers
 
                 var reader = new StreamReader(Request.Body);
                 var content = await reader.ReadToEndAsync();
+                var jsonString = JsonSerializer.Deserialize<JsonElement>(content);
 
-                Console.WriteLine(content);
+                Console.WriteLine(jsonString);
 
                 return Ok();
             }

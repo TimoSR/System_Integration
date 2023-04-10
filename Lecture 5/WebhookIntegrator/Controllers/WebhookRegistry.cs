@@ -14,19 +14,18 @@ namespace WebhookIntegrator.Controllers
     public class WebhookRegistry : ControllerBase
     {
 
-        [HttpPost("RegisterWebhook")]
-        public async Task<IActionResult> RegisterWebhook(string @event)
+        [HttpPost("RegisterWebhook/{event}")]
+        public async Task<IActionResult> RegisterWebhook(string @event, [FromBody] string myEndpoint)
         {
 
-            string endpoint = "https://localhost:7222/WebhookRegistry/WebhookListener";
-            string subscribeWebhook = $"https://localhost:7263/api/Webhook/register/{@event}";
+            string subscribeWebhook = $"https://localhost:7443/api/Webhook/register/{@event}";
 
             try
             {
 
                 HttpClient httpClient = new HttpClient();
 
-                string endpointJson = JsonSerializer.Serialize(endpoint);
+                string endpointJson = JsonSerializer.Serialize(myEndpoint);
                 StringContent jsonPackage = new StringContent(endpointJson, Encoding.UTF8, "application/json");
 
                 await httpClient.PostAsync(subscribeWebhook, jsonPackage);
@@ -40,11 +39,11 @@ namespace WebhookIntegrator.Controllers
             }
         }
 
-        [HttpPost("UnregisterWebhook")]
-        public async Task<IActionResult> UnregisterWebhook(string @event)
+        [HttpPost("UnregisterWebhook/{event}")]
+        public async Task<IActionResult> UnregisterWebhook(string @event, [FromBody] string myEndpoint)
         {
-            string registeredEndpoint = "https://localhost:7222/WebhookRegistry/WebhookListener";
-            string unregisterWebhook = $"https://localhost:7263/api/Webhook/unregister/{@event}";
+
+            string unregisterWebhook = $"https://localhost:7443/api/Webhook/unregister/{@event}";
 
             try
             {

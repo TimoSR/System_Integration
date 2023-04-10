@@ -24,9 +24,16 @@ COPY --from=build-env /app/out .
 # Copy the certificate file
 COPY certificate.pfx .
 
+# Copy the files
+COPY invoice_completed.txt .
+COPY invoice_processing.txt .
+COPY payment_processed.txt .
+COPY payment_received.txt .
+
+
 # Set the environment variable for the ASP.NET Core environment
 ENV ASPNETCORE_ENVIRONMENT=Production
-ENV ASPNETCORE_URLS="http://+:8080;https://+:8443"
+ENV ASPNETCORE_URLS="http://+:7080;https://+:7443"
 ENV ASPNETCORE_Kestrel__Certificates__Default__Path="/app/certificate.pfx"
 
 # Use a build argument for the password

@@ -34,6 +34,16 @@ namespace WebhookServer.Controllers
             return Ok("Webhook registered.");
         }
 
+        [HttpGet("GetEndpoints/{event}")]
+        public ActionResult GetEndpoints(string @event)
+        {
+
+            string filename = $"{@event}.txt";
+            string[] existingEndpoints = System.IO.File.ReadAllLines(filename);
+            return Ok(existingEndpoints);
+        }
+
+
         [HttpPost("unregister/{event}")]
         public async Task<IActionResult> Unregister(string @event, [FromBody] string endpointUrl)
         {

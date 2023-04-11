@@ -23,22 +23,7 @@ variable "location" {
   sensitive = true
 }
 
-variable "server_name" {
-  type      = string
-  sensitive = true
-}
-
 variable "resource_group_name" {
-  type      = string
-  sensitive = true
-}
-
-variable "administrator_login" {
-  type      = string
-  sensitive = true
-}
-
-variable "administrator_login_password" {
   type      = string
   sensitive = true
 }

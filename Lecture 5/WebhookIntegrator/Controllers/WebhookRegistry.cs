@@ -50,7 +50,7 @@ namespace WebhookIntegrator.Controllers
 
                 HttpClient httpClient = new HttpClient();
 
-                string endpointJson = JsonSerializer.Serialize(registeredEndpoint);
+                string endpointJson = JsonSerializer.Serialize(myEndpoint);
 
                 StringContent jsonPackage = new StringContent(endpointJson, Encoding.UTF8, "application/json");
 

@@ -4,17 +4,17 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:8906",
-      "sslPort": 44358
+      "applicationUrl": "http://localhost:21365",
+      "sslPort": 44325
     }
   },
   "profiles": {
-    "WebhookServer": {
+    "WebhookIntegrator": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7443;http://localhost:7080",
+      "applicationUrl": "https://localhost:7222;http://localhost:5123",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

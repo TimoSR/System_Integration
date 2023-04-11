@@ -10,45 +10,58 @@ using Newtonsoft.Json.Linq;
 namespace WebhookIntegrator.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WebhookRegistry : ControllerBase
     {
 
         [HttpPost("RegisterWebhook/{event}")]
-        public async Task<IActionResult> RegisterWebhook(string @event, [FromBody] string myEndpoint)
+        public async Task<IActionResult> RegisterWebhook(string @event)
         {
-
-            string subscribeWebhook = $"https://localhost:7443/api/Webhook/register/{@event}";
+            string myEndpoint = "https://3b36-185-96-183-231.ngrok-free.app/api/WebhookRegistry/WebhookListener";
+            string subscribeWebhook = $"https://my-project-webhook-dev.westeurope.azurecontainer.io:7443/api/Webhook/register/{@event}";
 
             try
             {
+                // Bypass SSL certificate validation (not recommended for production environments)
+                var httpClientHandler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                };
 
-                HttpClient httpClient = new HttpClient();
+                using var httpClient = new HttpClient(httpClientHandler);
 
                 string endpointJson = JsonSerializer.Serialize(myEndpoint);
                 StringContent jsonPackage = new StringContent(endpointJson, Encoding.UTF8, "application/json");
 
                 await httpClient.PostAsync(subscribeWebhook, jsonPackage);
 
-
                 return Ok();
             }
             catch (Exception error)
             {
-                return BadRequest(error);
+                return BadRequest(error.Message);
             }
         }
 
+
         [HttpPost("UnregisterWebhook/{event}")]
-        public async Task<IActionResult> UnregisterWebhook(string @event, [FromBody] string myEndpoint)
+        public async Task<IActionResult> UnregisterWebhook(string @event)
         {
 
-            string unregisterWebhook = $"https://localhost:7443/api/Webhook/unregister/{@event}";
+            // needs to fit ngrok endpoint
+            string myEndpoint = "https://3b36-185-96-183-231.ngrok-free.app/api/WebhookRegistry/WebhookListener";
+            string unregisterWebhook = $"https://my-project-webhook-dev.westeurope.azurecontainer.io:7443/api/Webhook/unregister/{@event}";
 
             try
             {
 
-                HttpClient httpClient = new HttpClient();
+                // Bypass SSL certificate validation (not recommended for production environments)
+                var httpClientHandler = new HttpClientHandler
+                {
+                    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true
+                };
+
+                HttpClient httpClient = new HttpClient(httpClientHandler);
 
                 string endpointJson = JsonSerializer.Serialize(myEndpoint);
 

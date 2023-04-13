@@ -41,8 +41,8 @@ ARG CERT_PASSWORD
 ENV ASPNETCORE_Kestrel__Certificates__Default__Password=$CERT_PASSWORD
 
 # Expose the ports used by the application (use the ports from the "WebhookServer" profile)
-EXPOSE 8080
-EXPOSE 8443
+EXPOSE 7080
+EXPOSE 7443
 
 # Start the application
 ENTRYPOINT ["dotnet", "WebhookServer.dll"]

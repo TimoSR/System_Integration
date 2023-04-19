@@ -10,8 +10,6 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
-console.log(firebaseConfig.apiKey);
-
 // Print a message to the console
 console.log("Firebase app initialized");
 

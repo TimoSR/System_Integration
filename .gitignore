@@ -381,6 +381,9 @@ tfplan
 
 .dccache
 
+*.env
+.env.development
+
 # End of https://www.toptal.com/developers/gitignore/api/terraform
 
 # End of https://www.toptal.com/developers/gitignore/api/dotnetcore,go,node,python

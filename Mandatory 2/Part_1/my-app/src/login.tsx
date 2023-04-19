@@ -13,7 +13,11 @@ const LoginPage: React.FC = () => {
     const login = async (e: React.FormEvent) => {
       e.preventDefault();
       try {
-        await signInWithEmailAndPassword(auth, email, password);
+        const userCrendtial = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCrendtial.user;
+        if (user) {
+            console.log("User ID: " + user.uid)
+        }
         alert('Logged in successfully!');
       } catch (error: any) {
         alert('Error logging in: ' + error.message);

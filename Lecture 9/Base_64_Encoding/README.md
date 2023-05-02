@@ -1,0 +1,1 @@
+Base64 encode an image and add it to a HTML page.

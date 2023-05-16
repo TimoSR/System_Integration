@@ -10,11 +10,9 @@ string folder_name = "scraped_html";
 
 ScrapeSaveHtml(url, folder_name);
 
-/*
-* Functions
-*/
-
-// Function to scrape HTML content from a provided URL and save it to html file in a specified folder
+/* 
+ * Function to scrape HTML content from a provided URL and save it to html file in a specified folder 
+ */
 void ScrapeSaveHtml(string url, string folder_name) {
 
     HtmlWeb web = new HtmlWeb();
@@ -31,7 +29,9 @@ void ScrapeSaveHtml(string url, string folder_name) {
 
     string file_path = Path.Combine(folder_name, file_name);
 
-    // Inform the user about the save operation
+    /* 
+     * Inform the user about the save operation 
+     */
     Console.WriteLine($"Saved {website_name}.html to the following path: {file_path}");
 
     Directory.CreateDirectory(folder_name);
@@ -39,7 +39,9 @@ void ScrapeSaveHtml(string url, string folder_name) {
     html_doc.Save(file_path);
 }
 
-// Function to extract the website's name from a URL
+/* 
+ * Function to extract the website's name from a URL 
+ */
 string GetWebsiteName(string url) {
 
     Uri uri = new Uri(url);

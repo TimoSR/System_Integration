@@ -8,12 +8,12 @@ string url = "https://www.wowhead.com/news";
 
 string folder_name = "scraped_html";
 
-ScrapeParseHtml(url, folder_name);
+ScrapeSaveHtml(url, folder_name);
 
 /* 
  * Function to scrape HTML content from a provided URL and parsing it to a html file in a specified folder 
  */
-void ScrapeParseHtml(string url, string folder_name) {
+void ScrapeSaveHtml(string url, string folder_name) {
 
     HtmlWeb web = new HtmlWeb();
 

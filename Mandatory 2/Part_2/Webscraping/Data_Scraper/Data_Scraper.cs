@@ -31,6 +31,7 @@ void ScrapeSaveHtml(string url, string folder_name) {
 
     string file_path = Path.Combine(folder_name, file_name);
 
+    // Inform the user about the save operation
     Console.WriteLine($"Saved {website_name}.html to the following path: {file_path}");
 
     Directory.CreateDirectory(folder_name);
@@ -38,6 +39,7 @@ void ScrapeSaveHtml(string url, string folder_name) {
     html_doc.Save(file_path);
 }
 
+// Function to extract the website's name from a URL
 string GetWebsiteName(string url) {
 
     Uri uri = new Uri(url);

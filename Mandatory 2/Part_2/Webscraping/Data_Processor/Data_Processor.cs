@@ -22,8 +22,11 @@ var news_list_cards = html_doc.DocumentNode.Descendants("div")
     .Where(node => node.GetAttributeValue("class", "")
         .Equals("news-list-card")).ToList();
 
+int index = 0;
+
 foreach (var news_card in news_list_cards)
 {
+    
     var newsTitle = news_card.Descendants("h3")
                 .FirstOrDefault()?.InnerText.Trim();
 
@@ -37,10 +40,16 @@ foreach (var news_card in news_list_cards)
     var newsAuthorAndDate = news_card .Descendants("span")
         .FirstOrDefault(node => node.GetAttributeValue("class", "")
         .Equals("news-list-card-content-footer-author"))?.InnerText.Trim();
+    
+    if(index == 0) {
+        Console.WriteLine("------------------------------");
+    }
 
     Console.WriteLine($"Title: {newsTitle}");
     Console.WriteLine($"Link: {newsLink}");
     Console.WriteLine($"Content: {newsContent}");
     Console.WriteLine($"Author and Date: {newsAuthorAndDate}");
     Console.WriteLine("------------------------------");
+
+    index++;
 }

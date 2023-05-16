@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 string url = "https://www.wowhead.com/news";
 
-htmlParser(url);
+string folder_name = "scraped_html";
 
-void htmlParser(string url) {
+ScrapeSaveHtml(url, folder_name);
+
+/*
+* Functions
+*/
+
+// Function to scrape HTML content from a provided URL and save it to html file in a specified folder
+void ScrapeSaveHtml(string url, string folder_name) {
 
     HtmlWeb web = new HtmlWeb();
 
@@ -18,22 +25,20 @@ void htmlParser(string url) {
 
     //Console.WriteLine(html_content);
 
-    string website_name = getWebsiteName(url);
-
-    string folder_name = "scraped_html";
+    string website_name = GetWebsiteName(url);
 
     string file_name = $"{website_name}.html";
 
     string file_path = Path.Combine(folder_name, file_name);
 
-    Console.WriteLine($"Saved {website_name} HTML to the following path: {file_path}");
+    Console.WriteLine($"Saved {website_name}.html to the following path: {file_path}");
 
     Directory.CreateDirectory(folder_name);
 
     html_doc.Save(file_path);
 }
 
-string getWebsiteName(string url) {
+string GetWebsiteName(string url) {
 
     Uri uri = new Uri(url);
 

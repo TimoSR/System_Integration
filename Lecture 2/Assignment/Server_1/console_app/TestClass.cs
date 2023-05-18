@@ -12,12 +12,7 @@ namespace console_app
         static void Main(string[] args)
         {
             PersonFilesParser parser = new PersonFilesParser();
-
-            var contents = parser.jsonContents;
-
-            Console.WriteLine(contents?.ToString());
-            Console.WriteLine(contents?.GetType().ToString());
-            Console.WriteLine(parser.age);
+            parser.readJsonFile();
 
         }
     }

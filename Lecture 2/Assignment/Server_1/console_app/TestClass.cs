@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using testproject.application;
+using file_read_parser_lib.application;
+using file_read_parser_lib.domain;
 
-namespace testproject
+namespace console_app
 {
     public class TestClass
     {
@@ -16,6 +17,7 @@ namespace testproject
 
             Console.WriteLine(contents?.ToString());
             Console.WriteLine(contents?.GetType().ToString());
+            Console.WriteLine(parser.age);
 
         }
     }

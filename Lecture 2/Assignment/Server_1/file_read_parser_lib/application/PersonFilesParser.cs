@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
 using Newtonsoft.Json;
-using testproject.domain;
+using file_read_parser_lib.domain;
 
-namespace testproject.application
+namespace file_read_parser_lib.application
 {
     public class PersonFilesParser
     {

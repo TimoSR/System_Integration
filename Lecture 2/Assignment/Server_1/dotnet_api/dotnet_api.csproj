@@ -10,4 +10,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\file_read_parser_lib\file_read_parser_lib.csproj" />
+  </ItemGroup>
+
 </Project>

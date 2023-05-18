@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace testproject.domain
+namespace file_read_parser_lib.domain
 {
     public class Person
     {

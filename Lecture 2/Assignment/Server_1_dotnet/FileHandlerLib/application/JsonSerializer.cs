@@ -28,10 +28,11 @@ namespace FileHandlerLib.application
 
             try
             {
+                // Reading the yaml file
                 var yamlString = File.ReadAllText(filePath);
-                // Converting the yamlString to a yamlObject
+                // Parsing the yamlString to a yamlObject
                 var yamlObject = deserializer.Deserialize(new StringReader(yamlString));
-                // Converting the yamlObject to a jsonString
+                // Serializing the yamlObject to a jsonString
                 jsonString = System.Text.Json.JsonSerializer.Serialize(yamlObject, settings);
             }
             catch (FileNotFoundException ex)

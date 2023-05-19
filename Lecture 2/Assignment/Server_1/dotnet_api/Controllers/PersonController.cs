@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using dotnet_api.application;
-using dotnet_api.domain;
 using Newtonsoft.Json.Linq;
+using JsonFileEncoderLib.application;
+using JsonFileEncoderLib.domain;
 
 namespace dotnet_api.Controllers
 {
@@ -17,9 +17,11 @@ namespace dotnet_api.Controllers
         public ActionResult<Person> GetJson()
         {
 
-            PersonFilesParser parser = new PersonFilesParser();
+            PersonJsonEncoder reader = new PersonJsonEncoder();
+            var jsonContent = reader.readJsonFile();
+            
 
-            return parser.jsonContents;
+            return Content(jsonContent, "application/json");
 
         }
     }

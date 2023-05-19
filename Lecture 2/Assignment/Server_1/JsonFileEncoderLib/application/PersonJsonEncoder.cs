@@ -15,23 +15,25 @@ namespace JsonFileEncoderLib.application
 
         // File Info
         // .. if files is outside a project folder
-        private readonly string fileFolder = "../files/";
         private readonly string jsonFilename = "json_file.json";
         private readonly string yaml_filename = "yaml_file.yaml";
         private readonly string text_filename = "text_file.txt";
+
+        string filesFolderPath = Path.Combine("files");
 
         public PersonJsonEncoder() {}
 
         public string readJsonFile()
         {
 
-            string filepath = fileFolder + jsonFilename;
+            string filePath = Path.Combine(filesFolderPath, jsonFilename);
+            Console.WriteLine(filePath);
             string jsonString = "";
 
             try
             {
 
-                jsonString = File.ReadAllText(filepath);
+                jsonString = File.ReadAllText(filePath);
                 //Console.WriteLine(jsonString);
 
             }

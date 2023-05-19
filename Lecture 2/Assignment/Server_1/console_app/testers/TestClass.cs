@@ -14,7 +14,6 @@ namespace console_app
             FileReader fileReader = new FileReader();
             var file = fileReader.readJsonFile();
             Console.WriteLine(file);
-
         }
     }
 }

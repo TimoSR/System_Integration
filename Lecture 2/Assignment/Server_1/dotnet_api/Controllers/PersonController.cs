@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json.Linq;
-using JsonFileEncoderLib.application;
-using JsonFileEncoderLib.domain;
+using FileHandlerLib.application;
+using FileHandlerLib.domain;
 
 namespace dotnet_api.Controllers
 {
@@ -17,7 +17,7 @@ namespace dotnet_api.Controllers
         public ActionResult<Person> GetJson()
         {
 
-            PersonJsonEncoder reader = new PersonJsonEncoder();
+            FileReader reader = new FileReader();
             var jsonContent = reader.readJsonFile();
             
 

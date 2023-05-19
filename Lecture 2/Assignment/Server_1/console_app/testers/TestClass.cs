@@ -12,8 +12,14 @@ namespace console_app
         static void Main(string[] args)
         {
             FileReader fileReader = new FileReader();
-            var file = fileReader.readJsonFile();
-            Console.WriteLine(file);
+            var jsonFile = fileReader.readJsonFile();
+            var textFile = fileReader.readTextFile();
+            JsonSerializer serializer = new JsonSerializer();
+            var yamlFile = serializer.YamlToJson();
+
+            Console.WriteLine(jsonFile);
+            Console.WriteLine(textFile);
+            Console.WriteLine(yamlFile);
         }
     }
 }

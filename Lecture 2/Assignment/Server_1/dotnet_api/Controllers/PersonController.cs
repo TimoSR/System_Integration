@@ -13,16 +13,33 @@ namespace dotnet_api.Controllers
     [Route("api/[controller]")]
     public class PersonController : ControllerBase
     {
+
+        static FileReader reader = new FileReader();
+        static JsonSerializer serializer = new JsonSerializer();
+
         [HttpGet("getJson")]
-        public ActionResult<Person> GetJson()
+        public ActionResult GetJson()
         {
 
-            FileReader reader = new FileReader();
-            var jsonContent = reader.readJsonFile();
-            
+            var jsonContent = reader.readJsonFile();            
 
             return Content(jsonContent, "application/json");
 
+        }
+
+        [HttpGet("getText")]
+        public ActionResult GetText() {
+
+            var textContent = reader.readTextFile();
+
+            return Content(textContent, "text/plain");
+            
+        }
+
+        [HttpGet("getYamlAsJSON")]
+        public ActionResult GetYamlJson() {
+            var yamlContent = serializer.YamlToJson();
+            return Content(yamlContent, "application/json");
         }
     }
 }

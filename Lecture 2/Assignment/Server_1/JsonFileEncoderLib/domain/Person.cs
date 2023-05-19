@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace file_read_parser_lib.domain
+namespace JsonFileEncoderLib.domain
 {
     public class Person
     {

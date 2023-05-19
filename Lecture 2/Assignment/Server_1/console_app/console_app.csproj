@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\file_read_parser_lib\file_read_parser_lib.csproj" />
+    <ProjectReference Include="..\JsonFileEncoderLib\JsonFileEncoderLib.csproj" />
   </ItemGroup>
 
 </Project>

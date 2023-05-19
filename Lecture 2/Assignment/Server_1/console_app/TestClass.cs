@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using file_read_parser_lib.application;
-using file_read_parser_lib.domain;
+using JsonFileEncoderLib.application;
+using JsonFileEncoderLib.domain;
 
 namespace console_app
 {
@@ -11,8 +11,9 @@ namespace console_app
     {
         static void Main(string[] args)
         {
-            PersonFilesParser parser = new PersonFilesParser();
-            parser.readJsonFile();
+            PersonJsonEncoder parser = new PersonJsonEncoder();
+            var file = parser.readJsonFile();
+            Console.WriteLine(file);
 
         }
     }

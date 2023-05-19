@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "console_app", "console_app\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotnet_api", "dotnet_api\dotnet_api.csproj", "{3F2C2E0D-1AC0-42B6-B53D-B4F67FE5354E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "file_read_parser_lib", "file_read_parser_lib\file_read_parser_lib.csproj", "{A9B5F8AF-B43D-45AE-AAF6-FF0AD08F9EB3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonFileEncoderLib", "JsonFileEncoderLib\JsonFileEncoderLib.csproj", "{C0B8BA10-A162-4635-A081-E90E9C709E1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,5 +46,9 @@ Global
 		{A9B5F8AF-B43D-45AE-AAF6-FF0AD08F9EB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9B5F8AF-B43D-45AE-AAF6-FF0AD08F9EB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9B5F8AF-B43D-45AE-AAF6-FF0AD08F9EB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0B8BA10-A162-4635-A081-E90E9C709E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0B8BA10-A162-4635-A081-E90E9C709E1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0B8BA10-A162-4635-A081-E90E9C709E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0B8BA10-A162-4635-A081-E90E9C709E1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

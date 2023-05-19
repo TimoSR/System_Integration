@@ -4,12 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text.Json;
 using Newtonsoft.Json;
-using file_read_parser_lib.domain;
+using JsonFileEncoderLib.domain;
 
-namespace file_read_parser_lib.application
+namespace JsonFileEncoderLib.application
 {
-    public class PersonFilesParser
+    public class PersonJsonEncoder
     {
+
+        public dynamic settings = new JsonSerializerOptions { WriteIndented = true };
+
         // File Info
         // .. if files is outside a project folder
         private readonly string fileFolder = "../files/";
@@ -17,18 +20,19 @@ namespace file_read_parser_lib.application
         private readonly string yaml_filename = "yaml_file.yaml";
         private readonly string text_filename = "text_file.txt";
 
-        public PersonFilesParser() {}
+        public PersonJsonEncoder() {}
 
-        public void readJsonFile()
+        public string readJsonFile()
         {
 
             string filepath = fileFolder + jsonFilename;
+            string jsonString = "";
 
             try
             {
 
-                var jsonString = File.ReadAllText(filepath);
-                Console.WriteLine(jsonString.GetType());
+                jsonString = File.ReadAllText(filepath);
+                //Console.WriteLine(jsonString);
 
             }
             catch (Exception err)
@@ -37,6 +41,8 @@ namespace file_read_parser_lib.application
                 Console.Error.WriteLine(err);
 
             }
+
+            return jsonString;
 
         }
 

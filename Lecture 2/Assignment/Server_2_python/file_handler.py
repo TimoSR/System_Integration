@@ -35,9 +35,11 @@ class FileHandler:
 
             csvContents = [self.transformCsvToPerson(row) for row in csvData]
 
+            # Serilizing the csv contents into a json string
             jsonString = json.dumps(csvContents, indent=2)
 
-            # It is required in FastAPI to turn the jsonString to an JSon Object
+            # It is required in FastAPI to parse/marshel the jsonString to an Json Object
+            # before sending it as a response.
             jsonObject = json.loads(jsonString)
 
         except IOError as err:
@@ -70,8 +72,11 @@ class FileHandler:
             with open(filepath, 'r') as file:
                 xml_data = file.read()
             
+            # Serialing the xml_date to jsonString
             jsonString = json.dumps(xmltodict.parse(xml_data), indent=2)
 
+            # It is required by FastAPI to parse/marshel the jsonString to an Json Object
+            # before sending it as a response.
             jsonObject = json.loads(jsonString)
         
         except IOError as err:

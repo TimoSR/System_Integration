@@ -1,5 +1,6 @@
 import json
 import csv
+import xmltodict
 
 class FileHandler:
 
@@ -24,7 +25,6 @@ class FileHandler:
     def readParseCsvToJson(self):
 
         filepath = f"{self.fileFolder()}{self.csvFileName()}"
-        #jsonString: str = ""
         jsonObject = None
 
         try:
@@ -36,7 +36,7 @@ class FileHandler:
             csvContents = [self.transformCsvToPerson(row) for row in csvData]
 
             jsonString = json.dumps(csvContents, indent=2)
-            #print(jsonString)
+
             # It is required in FastAPI to turn the jsonString to an JSon Object
             jsonObject = json.loads(jsonString)
 
@@ -59,3 +59,23 @@ class FileHandler:
                     "zip": row["zip"]
                 }
             }
+    
+    def serialize_xml_to_json(self):
+
+        filepath = f"{self.fileFolder()}{self.xmlFileName()}"
+        jsonObject = None
+
+        try:
+
+            with open(filepath, 'r') as file:
+                xml_data = file.read()
+            
+            jsonString = json.dumps(xmltodict.parse(xml_data), indent=2)
+
+            jsonObject = json.loads(jsonString)
+        
+        except IOError as err:
+
+            print(f"{err}")
+
+        return jsonObject

@@ -5,16 +5,12 @@ app = FastAPI()
 
 readParseFiles = FileHandler()
 
-@app.get("/")
-def read_root():
-    return {"Hello": "FastAPI"}
-
 @app.get("/csvToJson")
 def csv_to_json():
-    jsonString = readParseFiles.readParseCsvToJson()
-    return jsonString
+    jsonObject = readParseFiles.readParseCsvToJson()
+    return jsonObject
 
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+@app.get("/xmlTojson")
+def xml_to_json():
+    jsonObject = readParseFiles.serialize_xml_to_json()
+    return jsonObject

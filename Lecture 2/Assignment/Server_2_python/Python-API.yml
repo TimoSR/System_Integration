@@ -1,0 +1,10 @@
+name: Python-API
+channels:
+  - conda-forge
+dependencies:
+    - python=3.10
+    - pip>=21.0
+    - pip:
+      - fastapi
+      - uvicorn
+      - xmltodict

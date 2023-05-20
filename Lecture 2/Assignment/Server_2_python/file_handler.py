@@ -11,7 +11,7 @@ class FileHandler:
         self.__xmlFileName = "xml_file.xml"
 
     def __call__(self):
-        self.readParseCsvToJson()
+        self.serialize_csv_to_json()
 
     def fileFolder(self):
         return self.__fileFolder
@@ -22,7 +22,7 @@ class FileHandler:
     def xmlFileName(self):
         return self.__xmlFileName
 
-    def readParseCsvToJson(self):
+    def serialize_csv_to_json(self):
 
         filepath = f"{self.fileFolder()}{self.csvFileName()}"
         jsonObject = None

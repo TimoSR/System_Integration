@@ -7,7 +7,7 @@ readParseFiles = FileHandler()
 
 @app.get("/csvToJson")
 def csv_to_json():
-    jsonObject = readParseFiles.readParseCsvToJson()
+    jsonObject = readParseFiles.serialize_csv_to_json()
     return jsonObject
 
 @app.get("/xmlTojson")

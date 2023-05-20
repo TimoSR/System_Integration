@@ -38,7 +38,7 @@ class FileHandler:
             # Serilizing the csv contents into a json string
             jsonString = json.dumps(csvContents, indent=2)
 
-            # It is required in FastAPI to parse/marshel the jsonString to an Json Object
+            # It is required in FastAPI to parse/marshal the jsonString to an Json Object
             # before sending it as a response.
             jsonObject = json.loads(jsonString)
 
@@ -75,7 +75,7 @@ class FileHandler:
             # Serialing the xml_date to jsonString
             jsonString = json.dumps(xmltodict.parse(xml_data), indent=2)
 
-            # It is required by FastAPI to parse/marshel the jsonString to an Json Object
+            # It is required by FastAPI to parse/marshal the jsonString to an Json Object
             # before sending it as a response.
             jsonObject = json.loads(jsonString)
         

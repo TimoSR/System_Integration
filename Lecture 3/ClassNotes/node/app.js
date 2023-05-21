@@ -30,7 +30,6 @@ app.get("/jokes", async (req, res) => {
 })
 
 
-
 app.get("/jokes", (req, res) => {
     res.send("Why don't scientists trust atoms? Because they make up everything!");
 })

@@ -1,5 +1,6 @@
 import json
 import csv
+import xmltodict
 
 class ReadParseFiles:
 
@@ -111,3 +112,26 @@ class ReadParseFiles:
                     "zip": row["zip"]
                 }
             }
+    
+    def serialize_xml_to_json(self):
+
+        filepath = f"{self.fileFolder()}{self.xmlFileName()}"
+        jsonObject = None
+
+        try:
+
+            with open(filepath, 'r') as file:
+                xml_data = file.read()
+            
+            # Serialing the xml_date to jsonString
+            jsonString = json.dumps(xmltodict.parse(xml_data), indent=2)
+
+            # It is required by FastAPI to parse/marshal the jsonString to an Json Object
+            # before sending it as a response.
+            jsonObject = json.loads(jsonString)
+        
+        except IOError as err:
+
+            print(f"{err}")
+
+        return jsonObject

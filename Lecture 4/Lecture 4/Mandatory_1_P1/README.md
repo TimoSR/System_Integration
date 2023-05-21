@@ -8,4 +8,4 @@ Documentation for Integrator nicolaj
 
 classicmodels_user:<user>.html within the node folder
 
-https://www.notion.so/Dokumentation-34ccd766f20f415f9793c70d0a5bdb7a?pvs=4
+https://abundant-interest-0e2.notion.site/Dokumentation-34ccd766f20f415f9793c70d0a5bdb7a

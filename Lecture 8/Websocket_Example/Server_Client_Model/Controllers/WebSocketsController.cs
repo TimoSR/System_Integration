@@ -34,7 +34,7 @@ namespace Server.Controllers
           }
         }
         
-        private async Task Echo(WebSocket webSocket)
+        private async Task Echo(WebSocket webSocket)    
         {
             var buffer = new byte[1024 * 4];
             var result = await webSocket.ReceiveAsync(new ArraySegment<byte>(buffer), CancellationToken.None);

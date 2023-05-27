@@ -7,6 +7,6 @@ string apiToken = Environment.GetEnvironmentVariable("YOUR_API_token");
 string sinchVirtualNumber = Environment.GetEnvironmentVariable("YOUR_Sinch_virtual_number");
 string recipient_number = Environment.GetEnvironmentVariable("YOUR_Recipient_Number");
 
-SMS sms = new SMS(sinchVirtualNumber, new string[] {recipient_number}, "Hello from Sinch!" );
+SMS sms = new SMS(sinchVirtualNumber, new string[] {recipient_number}, "Tim's SMS Service says HI!" );
 sms.sendSMS(sms, servicePlanId, apiToken);
 Console.ReadLine();

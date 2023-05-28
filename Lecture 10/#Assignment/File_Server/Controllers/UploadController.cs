@@ -2,6 +2,8 @@ using System;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -53,7 +55,7 @@ public class UploadController : ControllerBase
     public IActionResult Image(IFormFile file)
     {
         // Validate file type
-        var allowedMimeTypes = new[] { "image/jpeg", "image/png", "image/gif" };
+        var allowedMimeTypes = new[] { "image/jpeg", "image/png" };
         if (!allowedMimeTypes.Contains(file.ContentType))
         {
             return BadRequest("Invalid file type");

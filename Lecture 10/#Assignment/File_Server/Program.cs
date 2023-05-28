@@ -29,6 +29,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseWebSockets();
 
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 
 app.UseCors("MyCorsPolicy");

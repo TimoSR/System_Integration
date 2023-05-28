@@ -33,8 +33,24 @@ public class UploadController : ControllerBase
         return Ok();
     }
 
-    [HttpPost("File")]
-    public IActionResult File(IFormFile file)
+    [HttpPost("AnyFile")]
+    public IActionResult AnyFile(IFormFile file)
+    {
+
+        // Validate file size
+        const long maxFileSize = 20 * 1024 * 1024; // 20 MB
+        if (file.Length > maxFileSize)
+        {
+            return BadRequest("File size exceeds the limit (20 MB)");
+        }
+
+        FileWriter(file);
+    
+        return Ok("File uploaded successfully");
+    }
+
+    [HttpPost("Image")]
+    public IActionResult Image(IFormFile file)
     {
         // Validate file type
         var allowedMimeTypes = new[] { "image/jpeg", "image/png", "image/gif" };
@@ -44,20 +60,46 @@ public class UploadController : ControllerBase
         }
 
         // Validate file size
-        const long maxFileSize = 5 * 1024 * 1024; // 5 MB
+        const long maxFileSize = 20 * 1024 * 1024; // 20 MB
         if (file.Length > maxFileSize)
         {
-            return BadRequest("File size exceeds the limit (5 MB)");
+            return BadRequest("File size exceeds the limit (20 MB)");
         }
 
+        FileWriter(file);
+    
+        return Ok("File uploaded successfully");
+    }
+
+    [HttpPost("Gif")]
+    public IActionResult Gif(IFormFile file)
+    {
+        // Validate file type
+        var allowedMimeTypes = new[] { "image/gif" };
+        if (!allowedMimeTypes.Contains(file.ContentType))
+        {
+            return BadRequest("Invalid file type");
+        }
+
+        // Validate file size
+        const long maxFileSize = 20 * 1024 * 1024; // 20 MB
+        if (file.Length > maxFileSize)
+        {
+            return BadRequest("File size exceeds the limit (20 MB)");
+        }
+
+        FileWriter(file);
+    
+        return Ok("File uploaded successfully");
+    }
+
+    private void FileWriter(IFormFile file) {
         var webRootPath = _environment.WebRootPath;
         var uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads");
         Directory.CreateDirectory(uploadsFolder);
         var filePath = Path.Combine(uploadsFolder, file.FileName);
         using var fileStream = new FileStream(filePath, FileMode.Create);
         file.CopyTo(fileStream);
-    
-        return Ok("File uploaded successfully");
     }
 
 }

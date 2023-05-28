@@ -1,0 +1,1 @@
+https://abundant-interest-0e2.notion.site/Email-Integration-Assignment-6fca37264eb84de0b5d853d51f1d5686

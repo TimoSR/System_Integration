@@ -11,14 +11,17 @@ ConnectionMultiplexer redis = ConnectionMultiplexer.Connect(redisConnectionStrin
 // Get a database from the connection (db 0 is default)
 IDatabase db = redis.GetDatabase();
 
+// Get a different database from the connection (for example, db 1)
+//IDatabase db = redis.GetDatabase(1);
+
 // Set a value
-db.StringSet("myKey", "my value");
+db.StringSet("myKey2", "my value 2");
 
 // Get the value
-string value = db.StringGet("myKey");
+string value = db.StringGet("myKey2");
 
 // To set a value with an expiration (uncomment below if needed)
-// db.StringSet("myKey", "my value", TimeSpan.FromSeconds(10));
+db.StringSet("myKey", "my value", TimeSpan.FromSeconds(10));
 
 // Output the value
 Console.WriteLine(value);

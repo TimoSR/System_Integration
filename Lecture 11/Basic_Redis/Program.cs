@@ -1,5 +1,4 @@
 ﻿using Redis.OM;
-using Basic_Redis.Customer;
 using StackExchange.Redis;
 
 DotNetEnv.Env.Load();

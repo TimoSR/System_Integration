@@ -1,4 +1,4 @@
-using GraphQL_Example;
+using GraphQL_Annotation_Example.Queries;
 
 var builder = WebApplication.CreateBuilder(args);
 

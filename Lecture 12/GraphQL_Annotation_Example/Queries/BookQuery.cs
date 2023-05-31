@@ -1,4 +1,6 @@
-namespace GraphQL_Example;
+using GraphQL_Annotation_Example.Schema;
+
+namespace GraphQL_Annotation_Example.Queries;
 
 [ExtendObjectType("Query")]
 public class BookQuery
@@ -8,5 +10,3 @@ public class BookQuery
         return new Book("C# in depth", "Jon Skeet");
     }
 }
-
-public record Book(string Title, string Author);

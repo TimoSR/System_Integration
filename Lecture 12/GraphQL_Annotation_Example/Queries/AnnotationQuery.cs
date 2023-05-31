@@ -1,4 +1,6 @@
-namespace GraphQL_Example;
+using GraphQL_Annotation_Example.Schema;
+
+namespace GraphQL_Annotation_Example.Queries;
 
 [ExtendObjectType("Query")]
 public class AnnotationQuery 
@@ -14,7 +16,3 @@ public class AnnotationQuery
     }
     
 }
-
-public record Author(string name);
-
-public record AnnoBook(string title, Author author);

@@ -7,6 +7,6 @@ public class BookQuery
 {
     public Book GetBook()
     {
-        return new Book("C# in depth", "Jon Skeet");
+        return new Book{Title = "C# in depth", Author = "Jon Skeet"};
     }
 }

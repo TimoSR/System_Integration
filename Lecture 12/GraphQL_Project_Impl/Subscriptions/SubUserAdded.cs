@@ -12,8 +12,13 @@ namespace GraphQL_Project_Impl.Subscriptions;
 public class UserSubscription
 {
     [Subscribe]
-    public async Task<User> OnUserCreated([EventMessage] User newUser)
+    [Topic]
+    public User OnUserCreated([EventMessage] User newUser)
     {
         return newUser;
     }
+    
+    [Subscribe]
+    [Topic]
+    public Book BookAdded([EventMessage] Book book) => book;
 }

@@ -1,3 +1,7 @@
 namespace GraphQL_Project_Impl.Types;
 
-public record Book(string Title, string Author);
+public class Book {
+    public string Title {get; set;}
+    public string Author {get; set;}
+
+}

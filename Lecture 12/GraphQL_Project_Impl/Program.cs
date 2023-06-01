@@ -17,8 +17,7 @@ builder.Services
         .AddType<BlogMutation>()
         .AddType<UserMutation>()
         .AddType<BookMutation>()
-    .AddSubscriptionType(s => s.Name("Subscription"))
-        .AddType<UserSubscription>()
+    .AddSubscriptionType<Subscription>()
     .AddInMemorySubscriptions();
 
 var app = builder.Build();

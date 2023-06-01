@@ -23,5 +23,6 @@ namespace GraphQL_Project_Impl.Mutations
 
             return await Task.FromResult(newBlog);
         }
+        
     }
 }

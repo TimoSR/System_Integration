@@ -8,16 +8,8 @@ using HotChocolate.Subscriptions;
 
 namespace GraphQL_Project_Impl.Subscriptions;
 
-[ExtendObjectType("Subscription")]
-public class UserSubscription
+public class Subscription
 {
-    [Subscribe]
-    [Topic]
-    public User OnUserCreated([EventMessage] User newUser)
-    {
-        return newUser;
-    }
-    
     [Subscribe]
     [Topic]
     public Book BookAdded([EventMessage] Book book) => book;

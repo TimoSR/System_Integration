@@ -1,3 +1,4 @@
+using GraphQL_Project_Impl;
 using GraphQL_Project_Impl.Mutations;
 using GraphQL_Project_Impl.Queries;
 
@@ -8,9 +9,8 @@ builder.Services
     .AddQueryType(q => q.Name("Query"))
         .AddType<BookQuery>()
     .AddMutationType(m => m.Name("Mutation"))
-        .AddType<CreateBlog>()
-        .AddType<CreateUser>()
-        .AddType<CreateToken>();
+        .AddType<BlogMutation>()
+        .AddType<UserMutation>();
 
 var app = builder.Build();
 

@@ -1,1 +1,1 @@
-https://abundant-interest-0e2.notion.site/Important-Organizing-Code-ab73a4b070e34946ac56b1d76037fb48
+https://abundant-interest-0e2.notion.site/GraphQL-4660173356d643839f34a0e26cda622f

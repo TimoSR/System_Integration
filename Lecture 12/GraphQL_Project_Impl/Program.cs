@@ -11,6 +11,7 @@ builder.Services
         .AddType<BookQuery>()
         .AddType<BlogsQuery>()
         .AddType<BlogQuery>()
+        .AddType<UsersQuery>()
     .AddMutationType(m => m.Name("Mutation"))
         .AddType<BlogMutation>()
         .AddType<UserMutation>();

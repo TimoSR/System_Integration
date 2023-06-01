@@ -7,6 +7,13 @@ public class BlogsQuery
 {
     public BlogsResult GetAllBlogs()
     {
-        return new BlogsResult { Blogs = DataStore.blogs };
+        try
+        {
+            return new BlogsResult { Blogs = DataStore.blogs };
+        }
+        catch
+        {
+            return new BlogsResult { Errors = new List<string> { "Blog not found." } };
+        }   
     }
 }

@@ -1,3 +1,8 @@
 namespace GraphQL_Project_Impl.Types;
 
-public record BlogsResult(string[] Errors, Blog[] Blogs);
+public class BlogsResult
+{
+
+    public List<string> Errors { get; set; }
+    public List<Blog> Blogs { get; set; }
+}

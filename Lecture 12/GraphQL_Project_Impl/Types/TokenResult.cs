@@ -1,3 +1,7 @@
 namespace GraphQL_Project_Impl.Types;
 
-public record TokenResult(string[] Errors, Blog[] Blogs);
+public class TokenResult
+{
+    public List<string> Errors { get; set; }
+    public List<Blog> Blogs { get; set;}
+}

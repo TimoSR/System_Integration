@@ -1,3 +1,7 @@
 namespace GraphQL_Project_Impl.Types;
 
-public record InsertResult(string[] Errors, Blog Blog);
+public class InsertResult
+{
+    public List<string> Errors { get; set; }
+    public Guid Id { get; set; }
+}
